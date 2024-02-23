@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="hw">
+      <button @click="turnText()">{{btnText}}</button>
+      <br>
+      <p v-for="(item, index) in lists" v-on:click="delElement(index)">
+        {{item}}
+      </p>
+      <button @click="addNewElements()">Добавить</button>
+      
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const hw = {
+      data() {
+        return {
+          btnText: 'Перевернуть',
+          lists: ['Элемент 1',
+                  'Элемент 2',
+                  'Элемент 3'],
+          newElement: 'Новый элемент списка',
+        }
+      },
+      methods: {
+        turnText() {
+          this.btnText = this.btnText.split("").reverse().join("");
+        },
+        addNewElements() {
+          this.lists.push(this.newElement);
+        },
+        delElement(idx) {
+          this.lists.splice(idx, 1);
+        }
+        },
+    } 
+    Vue.createApp(hw).mount('#hw'); 
+  </script>
+</body>
+</html>
